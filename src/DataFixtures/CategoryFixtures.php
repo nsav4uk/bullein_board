@@ -14,9 +14,12 @@ class CategoryFixtures extends Fixture
 {
     /** @var array */
     private const CATEGORIES = ['Purchase', 'Selling', 'Rent'];
-    public const PURCHASE_REFERENCE = 'purchase-category';
-    public const SELLING_REFERENCE = 'selling-category';
-    public const RENT_REFERENCE = 'rent-category';
+
+    public const REFERENCES = [
+        'purchase-category',
+        'selling-category',
+        'rent-category'
+    ];
 
     /**
      * @param ObjectManager $manager

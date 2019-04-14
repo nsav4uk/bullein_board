@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\DataFixtures;
 
@@ -18,14 +18,20 @@ class AnnouncementFixtures extends Fixture implements DependentFixtureInterface
      */
     public function load(ObjectManager $manager): void
     {
-        $announcement = new Announcement();
+        foreach (CategoryFixtures::REFERENCES as $reference) {
+            for ($i = 0; $i < 5; $i++) {
+                $announcement = new Announcement();
 
-        $announcement
-            ->setTitle('Test Buying')
-            ->setBody('Test Body')
-            ->setCategory($this->getReference(CategoryFixtures::PURCHASE_REFERENCE));
+                $announcement
+                    ->setTitle('Test' . $i)
+                    ->setBody('Test Body' . $i)
+                    ->setCategory($this->getReference($reference))
+                    ->setUser($this->getReference('user'))
+                ;
 
-        $manager->persist($announcement);
+                $manager->persist($announcement);
+            }
+        }
 
         $manager->flush();
     }
@@ -37,6 +43,7 @@ class AnnouncementFixtures extends Fixture implements DependentFixtureInterface
     {
         return array(
             CategoryFixtures::class,
+            UserFixtures::class
         );
     }
 }

@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Table(name="announcements")
  * @ORM\Entity(repositoryClass="App\Repository\AnnouncementRepository")
  */
 class Announcement
@@ -23,6 +24,11 @@ class Announcement
     private $category;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="announcements")
+     */
+    private $user;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $title;
@@ -31,6 +37,25 @@ class Announcement
      * @ORM\Column(type="text")
      */
     private $body;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+
+    /**
+     * Announcement constructor.
+     */
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
 
     /**
      * @return int|null
@@ -55,6 +80,25 @@ class Announcement
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return User|null
+     */
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     * @return $this
+     */
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
