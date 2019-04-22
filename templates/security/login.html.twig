@@ -1,19 +1,39 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/floating-labels.css') }}">
+{% endblock %}
+
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    <div class="row justify-content-center">
+    <div class="col-6">
+        <form method="post">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail" class="sr-only">Email</label>
-    <input type="text" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-    <button class="btn btn-primary" name="login" type="submit">Sign in</button>
-</form>
+            <div class="text-center">
+                <h1 class="h3 mb-3 font-weight-normal">{{ 'Log In'|trans }}</h1>
+            </div>
+            <div class="form-label-group">
+                <input type="email" value="{{ last_username }}" id="inputEmail" name="email" class="form-control" placeholder="{{ 'Email'|trans }}" required autofocus>
+                <label for="inputEmail">{{ 'Email'|trans }}</label>
+            </div>
+            <div class="form-label-group">
+                <input type="password" id="inputPassword" name="password" class="form-control" placeholder="{{ 'Password'|trans }}" required>
+                <label for="inputPassword">{{ 'Password'|trans }}</label>
+            </div>
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" name="_remember_me"> {{ 'Remember me'|trans }}
+                </label>
+            </div>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <button class="btn btn-primary btn-block mb-3" name="login" type="submit">{{ 'Log In'|trans }}</button>
+            <p class="text-center"><a href="{{ path('app_registration') }}">{{ 'Do not have account'|trans }}?</a></p>
+        </form>
+    </div>
+    </div>
 {% endblock %}

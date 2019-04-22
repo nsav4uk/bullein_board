@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Registration!{% endblock %}
+{% block title %}{{ 'Registration'|trans }}!{% endblock %}
 
 {% block body %}
-    <h1 class="h3 mb-3 font-weight-normal">Registration</h1>
+    <h1 class="h3 mb-3 font-weight-normal">{{ 'Registration'|trans }}</h1>
     {{ form(form) }}
 {% endblock %}

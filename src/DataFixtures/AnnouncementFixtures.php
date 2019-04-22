@@ -23,8 +23,8 @@ class AnnouncementFixtures extends Fixture implements DependentFixtureInterface
                 $announcement = new Announcement();
 
                 $announcement
-                    ->setTitle('Test' . $i)
-                    ->setBody('Test Body' . $i)
+                    ->setTitle('Test ' . $reference . $i)
+                    ->setBody('Test Body '. $reference . $i)
                     ->setCategory($this->getReference($reference))
                     ->setUser($this->getReference('user'))
                 ;

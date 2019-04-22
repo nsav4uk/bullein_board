@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="announcements")
@@ -49,12 +52,25 @@ class Announcement
     private $updatedAt;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="announcement", cascade={"persist", "remove"})
+     */
+    private $images;
+
+    /**
+     * @Assert\File(mimeTypes={"image/jpg", "image/jpeg", "image/png"})
+     * @var array
+     */
+    private $files;
+
+    /**
      * Announcement constructor.
      */
     public function __construct()
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
+        $this->images = new ArrayCollection();
+        $this->files = [];
     }
 
     /**
@@ -93,10 +109,10 @@ class Announcement
     }
 
     /**
-     * @param User $user
-     * @return $this
+     * @param User|null $user
+     * @return Announcement
      */
-    public function setUser(User $user): self
+    public function setUser(?User $user): self
     {
         $this->user = $user;
 
@@ -137,6 +153,64 @@ class Announcement
     public function setBody(string $body): self
     {
         $this->body = $body;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    /**
+     * @param Image $image
+     * @return Announcement
+     */
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setAnnouncement($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Image $image
+     * @return Announcement
+     */
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+
+            if ($image->getAnnouncement() === $this) {
+                $image->setAnnouncement(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getFiles(): array
+    {
+        return $this->files;
+    }
+
+    /**
+     * @param array $files
+     * @return Announcement
+     */
+    public function setFiles(array $files): self
+    {
+        $this->files = $files;
 
         return $this;
     }

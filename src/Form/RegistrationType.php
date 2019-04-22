@@ -2,12 +2,8 @@
 
 namespace App\Form;
 
-use Symfony\Component\Form\{
-    AbstractType, FormBuilderInterface
-};
-use Symfony\Component\Form\Extension\Core\Type\{
-    EmailType, PasswordType, RepeatedType, SubmitType
-};
+use Symfony\Component\Form\{AbstractType, FormBuilderInterface};
+use Symfony\Component\Form\Extension\Core\Type\{EmailType, PasswordType, RepeatedType, SubmitType};
 use App\Entity\User;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 

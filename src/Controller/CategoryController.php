@@ -36,7 +36,7 @@ class CategoryController extends AbstractController
     public function categories(CategoryRepository $categoryRepository): Response
     {
         return $this->render('index/sidebar.html.twig', [
-            'categories' => $categoryRepository->findAll()
+            'categories' => $categoryRepository->getCategoryNames()
         ]);
     }
 }

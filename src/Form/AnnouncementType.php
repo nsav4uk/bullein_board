@@ -2,15 +2,9 @@
 
 namespace App\Form;
 
-use App\Entity\{
-    Announcement, Category
-};
-use Symfony\Component\Form\{
-    AbstractType, FormBuilderInterface
-};
-use Symfony\Component\Form\Extension\Core\Type\{
-    SubmitType, TextareaType, TextType
-};
+use App\Entity\{Announcement, Category};
+use Symfony\Component\Form\{AbstractType, FormBuilderInterface};
+use Symfony\Component\Form\Extension\Core\Type\{FileType, SubmitType, TextareaType, TextType};
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -28,11 +22,17 @@ class AnnouncementType extends AbstractType
     {
         $builder
             ->add('title', TextType::class)
-            ->add('body', TextareaType::class)
+            ->add('body', TextareaType::class, [
+                'attr' => ['rows' => 10]
+            ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'choice_translation_domain' => true
+            ])
+            ->add('files', FileType::class, [
+                'required' => false,
+                'multiple' => true
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => ['class' => 'btn-primary']

@@ -163,6 +163,37 @@ class User implements UserInterface
     }
 
     /**
+     * @param Announcement $announcement
+     * @return User
+     */
+    public function addAnnouncement(Announcement $announcement): self
+    {
+        if (!$this->announcements->contains($announcement)) {
+            $this->announcements[] = $announcement;
+            $announcement->setUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Announcement $announcement
+     * @return User
+     */
+    public function removeAnnouncement(Announcement $announcement): self
+    {
+        if ($this->announcements->contains($announcement)) {
+            $this->announcements->removeElement($announcement);
+
+            if ($announcement->getUser() === $this) {
+                $announcement->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
      * @return void
      */
     public function getSalt(): void

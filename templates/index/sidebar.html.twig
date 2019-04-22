@@ -1,3 +1,4 @@
+<a class="btn btn-block btn-primary mb-2" href="{{ path('add-announcement') }}">{{ 'Add'|trans }}</a>
 <ul class="list-group">
     {% for category in categories %}
         <li class="list-group-item"><a href="{{ path('get-by-category', {'category': category.id}) }}">{{ category.name|trans }}</a></li>
