@@ -26,6 +26,9 @@
     "doctrine/dbal": {
         "version": "v2.9.2"
     },
+    "doctrine/deprecations": {
+        "version": "v0.5.3"
+    },
     "doctrine/doctrine-bundle": {
         "version": "1.6",
         "recipe": {
@@ -122,6 +125,15 @@
     },
     "knplabs/knp-paginator-bundle": {
         "version": "v3.0.0"
+    },
+    "laminas/laminas-code": {
+        "version": "4.3.0"
+    },
+    "laminas/laminas-eventmanager": {
+        "version": "3.3.1"
+    },
+    "laminas/laminas-zendframework-bridge": {
+        "version": "1.2.0"
     },
     "monolog/monolog": {
         "version": "1.24.0"
@@ -222,6 +234,9 @@
     },
     "symfony/dependency-injection": {
         "version": "v4.2.5"
+    },
+    "symfony/deprecation-contracts": {
+        "version": "v2.4.0"
     },
     "symfony/doctrine-bridge": {
         "version": "v4.2.5"
@@ -347,6 +362,9 @@
     "symfony/polyfill-intl-idn": {
         "version": "v1.11.0"
     },
+    "symfony/polyfill-intl-normalizer": {
+        "version": "v1.22.1"
+    },
     "symfony/polyfill-mbstring": {
         "version": "v1.11.0"
     },
@@ -364,6 +382,9 @@
     },
     "symfony/property-info": {
         "version": "v4.2.5"
+    },
+    "symfony/proxy-manager-bridge": {
+        "version": "v4.2.12"
     },
     "symfony/routing": {
         "version": "4.2",
@@ -510,6 +531,9 @@
     },
     "twig/twig": {
         "version": "v2.7.4"
+    },
+    "webimpress/safe-writer": {
+        "version": "2.2.0"
     },
     "webmozart/assert": {
         "version": "1.4.0"
